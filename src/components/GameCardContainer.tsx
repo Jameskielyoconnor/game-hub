@@ -1,16 +1,33 @@
-import { Box } from "@chakra-ui/react";
-import { Children, ReactNode } from "react";
+import { Box } from '@chakra-ui/react'
+import React, { ReactNode } from 'react'
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode
 }
 
-const GameCardContainer = ({ children }: Props) => {
+export const GameCardContainer = ({children}: Props) => {
   return (
-    <Box width="250px" borderRadius={10} overflow="hidden">
+    <Box borderRadius={10} overflow="hidden" padding='10px'>
       {children}
     </Box>
-  );
-};
+  )
+}
 
-export default GameCardContainer;
+
+
+// import { Box } from "@chakra-ui/react";
+// import { Children, ReactNode } from "react";
+
+// interface Props {
+//   children: ReactNode;
+// }
+
+// const GameCardContainer = ({ children }: Props) => {
+//   return (
+//     <Box width="250px" borderRadius={10} overflow="hidden">
+//       {children}
+//     </Box>
+//   );
+// };
+
+// export default GameCardContainer;
