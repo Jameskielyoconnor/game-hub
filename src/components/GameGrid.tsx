@@ -3,22 +3,27 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { GameCardContainer } from "./GameCardContainer";
+import { Genres } from "../Hooks/useGenres";
 
-const GameGrid = () => {
-  const { data, error, isLoading } = useGames();
+interface Props {
+  selectedGenre: Genres | null;
+}
+
+  const GameGrid = ({selectedGenre}: Props) => {
+  const { data, error, isLoading } = useGames(selectedGenre);
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
       {error && <Text>{error}</Text>}
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={3}>
         {isLoading && skeletons.map((s) => (
-          <GameCardContainer>
+          <GameCardContainer key={s}>
              <GameCardSkeleton />
           </GameCardContainer>
         ))}
-        {data?.map((data) => (
-          <GameCardContainer>
-            <GameCard key={data.id} game={data} />
+        {data?.map((game) => (
+          <GameCardContainer key={game.id}>
+            <GameCard game={game} />
           </GameCardContainer>
         ))}
       </SimpleGrid>
@@ -28,38 +33,4 @@ const GameGrid = () => {
 
 export default GameGrid;
 
-// import { HStack, SimpleGrid, Skeleton, Text } from "@chakra-ui/react";
-// import useGames from "../Hooks/useGames";
-// import GameCard from "./GameCard";
-// import GameCardSkeleton from "./GameCardSkeleton";
-// import GameCardContainer from "./GameCardContainer";
 
-// const GameGrid = () => {
-//   const { data, error, isLoading } = useGames();
-//   const skeletons = [1, 2, 3, 4, 5, 6];
-
-//   return (
-//     <div>
-//       {error && <Text>{error}</Text>}
-//       <SimpleGrid
-//         columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
-//         padding="10px"
-//         spacing={10}
-//       >
-//         {isLoading &&
-//           skeletons.map((Skeleton) => (
-//             <GameCardContainer>
-//               <GameCardSkeleton key={Skeleton} />
-//             </GameCardContainer>
-//           ))}
-//         {data.map((game) => (
-//           <GameCardContainer>
-//               <GameCard key={game.id} game={game} />
-//           </GameCardContainer>
-//         ))}
-//       </SimpleGrid>
-//     </div>
-//   );
-// };
-
-// export default GameGrid;
