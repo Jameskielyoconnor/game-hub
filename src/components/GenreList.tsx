@@ -3,8 +3,6 @@ import {
   ListItem,
   HStack,
   Image,
-  Text,
-  Spinner,
   Button,
   Heading,
 } from "@chakra-ui/react";
@@ -19,8 +17,7 @@ interface Props {
 const GenreList = ({ selectedGenre, onSelectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
-  if (error) return null;
-  if (isLoading) return <Spinner />;
+
 
   return (
     <>
